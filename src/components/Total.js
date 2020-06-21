@@ -1,4 +1,6 @@
 import React from 'react';
+import {connect} from 'react-redux'
+import {mapStatetoProps} from '../reducers/mainReducer'
 
 const Total = props => {
   return (
@@ -8,4 +10,4 @@ const Total = props => {
   );
 };
 
-export default Total;
+export default connect(mapStatetoProps)(Total);

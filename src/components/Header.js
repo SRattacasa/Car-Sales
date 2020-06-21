@@ -1,4 +1,7 @@
 import React from 'react';
+import {connect} from 'react-redux'
+import {mapStatetoProps} from '../reducers/mainReducer'
+
 
 const Header = props => {
   return (
@@ -12,4 +15,4 @@ const Header = props => {
   );
 };
 
-export default Header;
+export default connect(mapStatetoProps)(Header);
