@@ -2,9 +2,11 @@ import React from 'react';
 
 import AddedFeature from './AddedFeature';
 import {connect} from 'react-redux'
-import {mapStatetoProps} from '../reducers/mainReducer'
+// import {mapStatetoProps} from '../reducers/mainReducer'
 
-
+const mapStatetoProps = (state) => {
+  return state
+}
 
 const AddedFeatures = props => {
   return (
@@ -14,7 +16,7 @@ const AddedFeatures = props => {
       {props.car.features.length ? (
         <ol type="1">
           {props.car.features.map(item => (
-            <AddedFeature key={item.id} feature={item.name} />
+            <AddedFeature key={item.id} feature={item.name} id={item.id} price={item.price}/>
           ))}
         </ol>
       ) : (

@@ -1,3 +1,5 @@
+import { bindActionCreators } from "redux";
+
 const initialValue = {
     additionalPrice: 0,
     car: {
@@ -25,17 +27,16 @@ export const mapStatetoProps = (state) => {
 export const mainReducer = (state = initialValue, action) => { 
   switch (action.type) {
     case "ADD_FEATURE":
-      console.log("REDUCER ADD FEATURE", action)
       return {
         ...state,
-        car: {...state.car, features: [...state.car.features, {name: action.payload.name, id: action.payload.id, price: action.payload.price, }]}
+        car: {...state.car, features: [...state.car.features, {name: action.payload.name, id: action.payload.id, price: action.payload.price, }]},
+        additionalPrice: state.additionalPrice + action.payload.price,
       }
     case "REMOVE_FEATURE":
-      console.log("REDUCER REMOVE FEATURE", action)
-     
       return {
         ...state,
-        car: {...state.car, features:[...state.car.features].filter(item => item.id === action.payload)}
+        car: {...state.car, features:state.car.features.filter(item => item.id !== action.payload.id)},
+        additionalPrice: state.additionalPrice - action.payload.price
       }
     default: 
     return state
