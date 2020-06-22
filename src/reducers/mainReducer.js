@@ -20,22 +20,22 @@ export const mapStatetoProps = (state) => {
   return state
 }
 
-export const mapDispatchtoProps = (state) => {
-  return state
-}
 
 
 export const mainReducer = (state = initialValue, action) => { 
   switch (action.type) {
     case "ADD_FEATURE":
-      console.log("something", action)
-      return {
-        ...state.features,
-        
-      }
-    case "REMOVE_FEATURE":
+      console.log("REDUCER ADD FEATURE", action)
       return {
         ...state,
+        car: {...state.car, features: [...state.car.features, {name: action.payload.name, id: action.payload.id, price: action.payload.price, }]}
+      }
+    case "REMOVE_FEATURE":
+      console.log("REDUCER REMOVE FEATURE", action)
+     
+      return {
+        ...state,
+        car: {...state.car, features:[...state.car.features].filter(item => item.id === action.payload)}
       }
     default: 
     return state
